@@ -27,8 +27,8 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
   const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
   const TOKEN_PATH = 'token.json';
 
-  (function(){
-  // Load client secrets from a local file.
+  app.post("/email", function(req, res) {
+    // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Calendar API.
@@ -116,9 +116,8 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
       }
     });
   }
-})();
 
-app.post("/email", function(req, res) {
+
   const all_events_string = JSON.stringify(all_events);
       sailthru.apiPost('include', {
         include: 'academy_feed',
