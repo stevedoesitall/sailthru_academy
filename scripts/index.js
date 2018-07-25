@@ -29,7 +29,7 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
 
   (function(){
   // Load client secrets from a local file.
-  fs.readFile('credentials.json', (err, content) => {
+  fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Calendar API.
     authorize(JSON.parse(content), listEvents);
@@ -109,6 +109,7 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
           //     event_data.summary = event.summary;
           //     event_data.description = event.description;
           all_events.push(event);
+          console.error('wtf', all_events)
         });
       } else {
         console.log('No upcoming events found.');
@@ -118,16 +119,16 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
 })();
 
 app.post("/email", function(req, res) {
-const all_events_string = JSON.stringify(all_events);
-    sailthru.apiPost('include', {
-      include: 'academy_feed',
-      content_html: "{feed_items =" + all_events_string + "}"
-  }, function(err, response) {
-      if (err) {
-        res.send(err);
-    }
-      else {
-        res.send(response);
-    }
-  });
+  const all_events_string = JSON.stringify(all_events);
+      sailthru.apiPost('include', {
+        include: 'academy_feed',
+        content_html: "{feed_items =" + all_events_string + "}"
+    }, function(err, response) {
+        if (err) {
+          res.send(err);
+      }
+        else {
+          res.send(response);
+      }
+    });
 });
