@@ -115,9 +115,9 @@ const all_events = [];
         console.log('No upcoming events found.');
       }
     });
+    const all_events_string = JSON.stringify(all_events);
   }
 
-  const all_events_string = JSON.stringify(all_events);
   sailthru.apiPost('include', {
     include: 'academy_feed',
     content_html: "{feed_items =" + all_events_string + "}"
