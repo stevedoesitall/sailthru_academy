@@ -17,6 +17,7 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 app.listen(port, () => console.log("Academy Feed app started on port " + port));
 
+app.post("/email", function(req, res) {
 
   const fs = require('fs');
   const readline = require('readline');
@@ -41,9 +42,6 @@ app.listen(port, () => console.log("Academy Feed app started on port " + port));
    * @param {Object} credentials The authorization client credentials.
    * @param {function} callback The callback to call with the authorized client.
    */
-
-
-app.post("/email", function(req, res) {
 
   function authorize(credentials, callback) {
     const {client_secret, client_id, redirect_uris} = credentials.installed;
