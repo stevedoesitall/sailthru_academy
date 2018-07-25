@@ -21,13 +21,14 @@ const fs = require('fs');
 const readline = require('readline');
 const {google} = require('googleapis');
 
-const all_events = [];
 
 // If modifying these scopes, delete credentials.json.
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'scripts/token.json';
 
   app.post("/email", function(req, res) {
+  const all_events = [];
+
     // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
