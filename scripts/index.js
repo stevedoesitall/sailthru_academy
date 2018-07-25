@@ -17,8 +17,6 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 app.listen(port, () => console.log("Academy Feed app started on port " + port));
 
-app.post("/email", function(req, res) {
-
   const fs = require('fs');
   const readline = require('readline');
   const {google} = require('googleapis');
@@ -119,7 +117,8 @@ app.post("/email", function(req, res) {
   }
 })();
 
-  const all_events_string = JSON.stringify(all_events);
+app.post("/email", function(req, res) {
+const all_events_string = JSON.stringify(all_events);
     sailthru.apiPost('include', {
       include: 'academy_feed',
       content_html: "{feed_items =" + all_events_string + "}"
