@@ -120,11 +120,11 @@ app.post("/email", function(req, res) {
           content_html: "{feed_items =" + all_events_string + "}"
       }, function(err, response) {
           if (err) {
-              console.log(err);
-          }
+            res.send(err);
+        }
           else {
-              console.log(typeof all_events);
-          }
+            res.send(response);
+        }
       });
     });
   }
