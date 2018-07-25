@@ -17,15 +17,15 @@ app.use(body_parser.urlencoded({ extended: false }));
 app.use(body_parser.json());
 app.listen(port, () => console.log("Academy Feed app started on port " + port));
 
-  const fs = require('fs');
-  const readline = require('readline');
-  const {google} = require('googleapis');
+const fs = require('fs');
+const readline = require('readline');
+const {google} = require('googleapis');
 
-  const all_events = [];
+const all_events = [];
 
-  // If modifying these scopes, delete credentials.json.
-  const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-  const TOKEN_PATH = 'token.json';
+// If modifying these scopes, delete credentials.json.
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
+const TOKEN_PATH = 'scripts/token.json';
 
   app.post("/email", function(req, res) {
     // Load client secrets from a local file.
