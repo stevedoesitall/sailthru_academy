@@ -29,6 +29,7 @@ app.post("/email", function(req, res) {
   const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
   const TOKEN_PATH = 'token.json';
 
+  (function(){
   // Load client secrets from a local file.
   fs.readFile('credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
@@ -116,6 +117,7 @@ app.post("/email", function(req, res) {
       }
     });
   }
+})();
 
   const all_events_string = JSON.stringify(all_events);
     sailthru.apiPost('include', {
