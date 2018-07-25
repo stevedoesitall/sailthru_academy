@@ -1,4 +1,4 @@
-$(".cleaner").on("generator", function submit_form() {
+$(".generator").on("click", function submit_form() {
     alert(`Refreshing feed.`);
     $.ajax({
         type: "POST",
