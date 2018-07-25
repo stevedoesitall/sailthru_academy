@@ -26,7 +26,6 @@ const {google} = require('googleapis');
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'scripts/token.json';
 const all_events = [];
-all_events.length = 0;
 
   app.post("/email", function(req, res) {
     // Load client secrets from a local file.
