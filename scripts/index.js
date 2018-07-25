@@ -105,6 +105,7 @@ const all_events = [];
         console.log('Upcoming 10 events:');
         events.map((event, i) => {
           const start = event.start.dateTime || event.start.date;
+          all_events.length = [];
           // const event_data = {};
           //     event_data.summary = event.summary;
           //     event_data.description = event.description;
@@ -115,19 +116,17 @@ const all_events = [];
         console.log('No upcoming events found.');
       }
     });
-    const all_events_string = JSON.stringify(all_events);
-  }
-
-  sailthru.apiPost('include', {
-    include: 'academy_feed',
-    content_html: "{feed_items =" + all_events_string + "}"
-}, function(err, response) {
-    if (err) {
-      res.send(err);
-  }
-    else {
-      res.send(response);
-  }
-});
-
+}
+  const all_events_string = JSON.stringify(all_events);
+    sailthru.apiPost('include', {
+      include: 'academy_feed',
+      content_html: "{feed_items =" + all_events_string + "}"
+      }, function(err, response) {
+      if (err) {
+        res.send(err);
+    }
+      else {
+        res.send(response);
+    }
+  });
 });
