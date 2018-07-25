@@ -28,7 +28,6 @@ const TOKEN_PATH = 'scripts/token.json';
 let all_events = [];
 
   app.post("/email", function(req, res) {
-  all_events.length = 0;
 
     // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
