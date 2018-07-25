@@ -27,10 +27,6 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'scripts/token.json';
 const all_events = [];
 
-clear_array = function() {
-  all_events.length = 0;
-}
-
   app.post("/email", function(req, res) {
     clear_array();
     // Load client secrets from a local file.
@@ -120,19 +116,17 @@ clear_array = function() {
         console.log('No upcoming events found.');
       }
     });
+    const all_events_string = JSON.stringify(all_events);
+    sailthru.apiPost('include', {
+      include: 'academy_feed',
+      content_html: "{feed_items =" + all_events_string + "}"
+  }, function(err, response) {
+      if (err) {
+        res.send(err);
+    }
+      else {
+        res.send(response);
+    }
+  });
   }
-
-
-  const all_events_string = JSON.stringify(all_events);
-      sailthru.apiPost('include', {
-        include: 'academy_feed',
-        content_html: "{feed_items =" + all_events_string + "}"
-    }, function(err, response) {
-        if (err) {
-          res.send(err);
-      }
-        else {
-          res.send(response);
-      }
-    });
 });
