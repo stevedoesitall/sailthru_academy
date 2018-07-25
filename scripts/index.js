@@ -28,7 +28,6 @@ const TOKEN_PATH = 'scripts/token.json';
 const all_events = [];
 
   app.post("/email", function(req, res) {
-    clear_array();
     // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
@@ -116,17 +115,19 @@ const all_events = [];
         console.log('No upcoming events found.');
       }
     });
-    const all_events_string = JSON.stringify(all_events);
-    sailthru.apiPost('include', {
-      include: 'academy_feed',
-      content_html: "{feed_items =" + all_events_string + "}"
-  }, function(err, response) {
-      if (err) {
-        res.send(err);
-    }
-      else {
-        res.send(response);
-    }
-  });
   }
+});
+
+const all_events_string = JSON.stringify(all_events);
+sailthru.apiPost('include', {
+  include: 'academy_feed',
+  content_html: "{feed_items =" + all_events_string + "}"
+}, function(err, response) {
+  if (err) {
+    res.send(err);
+}
+  else {
+    res.send(response);
+    all_events.legnth = 0;
+}
 });
