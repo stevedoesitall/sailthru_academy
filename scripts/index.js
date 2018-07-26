@@ -118,9 +118,7 @@ const all_events = [];
       }
     });
 }
-
   const all_events_string = JSON.stringify(all_events);
-  if (all_events.length == 0) {
     sailthru.apiPost('include', {
       include: 'academy_feed',
       content_html: "{feed_items =" + all_events_string + "}"
@@ -132,31 +130,4 @@ const all_events = [];
         res.send(response);
     }
   });
-    setTimeout(function(){
-      sailthru.apiPost('include', {
-        include: 'academy_feed',
-        content_html: "{feed_items =" + all_events_string + "}"
-        }, function(err, response) {
-        if (err) {
-          res.send(err);
-      }
-        else {
-          res.send(response);
-      }
-    });
-  }, 1500);
-  }
-  else {
-    sailthru.apiPost('include', {
-      include: 'academy_feed',
-      content_html: "{feed_items =" + all_events_string + "}"
-      }, function(err, response) {
-      if (err) {
-        res.send(err);
-    }
-      else {
-        res.send(response);
-    }
-  });
-  }
 });
