@@ -119,41 +119,15 @@ const all_events = [];
     });
 }
   const all_events_string = JSON.stringify(all_events);
-    if (!all_events.length) {
-        sailthru.apiPost('include', {
-          include: 'academy_feed',
-          content_html: "{feed_items =" + all_events_string + "}"
-          }, function(err, response) {
-          if (err) {
-            res.send(err);
-        }
-          else {
-            res.send(response);
-        }
-      });
-      sailthru.apiPost('include', {
-        include: 'academy_feed',
-        content_html: "{feed_items =" + all_events_string + "}"
-        }, function(err, response) {
-        if (err) {
-          res.send(err);
-      }
-        else {
-          res.send(response);
-      }
-    });
+    sailthru.apiPost('include', {
+      include: 'academy_feed',
+      content_html: "{feed_items =" + all_events_string + "}"
+      }, function(err, response) {
+      if (err) {
+        res.send(err);
     }
-    else {
-      sailthru.apiPost('include', {
-        include: 'academy_feed',
-        content_html: "{feed_items =" + all_events_string + "}"
-        }, function(err, response) {
-        if (err) {
-          res.send(err);
-      }
-        else {
-          res.send(response);
-      }
-    });
+      else {
+        res.send(response);
     }
+  });
 });
