@@ -126,6 +126,7 @@ const all_events = [];
     }
       else {
         res.send(response);
+        all_events.length = [];
     }
   });
 });
