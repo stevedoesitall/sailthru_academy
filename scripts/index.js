@@ -103,8 +103,6 @@ const all_events = [];
       const events = res.data.items;
       if (events.length) {
         console.log('Upcoming 10 events:');
-        all_events.length = [];
-
         events.map((event, i) => {
           const start = event.start.dateTime || event.start.date;
           // const event_data = {};
