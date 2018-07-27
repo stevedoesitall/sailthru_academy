@@ -27,7 +27,7 @@ const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'scripts/token.json';
 
   app.post("/email", function(req, res) {
-  const all_events = [];
+  let all_events = [];
     // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
@@ -109,7 +109,6 @@ const TOKEN_PATH = 'scripts/token.json';
           //     event_data.summary = event.summary;
           //     event_data.description = event.description;
           all_events.push(event);
-          console.error('wtf', all_events)
         });
       } else {
         console.log('No upcoming events found.');
