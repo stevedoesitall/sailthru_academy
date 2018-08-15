@@ -1,4 +1,4 @@
-$(".generator").on("click", function submit_form() {
+generator_button.addEventListener("click", function submit_form() {
     alert(`Refreshing feed.`);
     $.ajax({
         type: "POST",
