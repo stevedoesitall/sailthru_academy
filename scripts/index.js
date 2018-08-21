@@ -26,7 +26,7 @@ let all_events = [];
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 const TOKEN_PATH = 'scripts/token.json';
 
-  app.post("/email", function(req, res) {
+  app.post("/server", function(req, res) {
     // Load client secrets from a local file.
   fs.readFile('scripts/credentials.json', (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
