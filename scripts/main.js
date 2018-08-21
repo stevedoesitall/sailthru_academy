@@ -1,10 +1,20 @@
-generator_button.addEventListener("click", function submit_form() {
-    alert(`Refreshing feed.`);
-    $.ajax({
-        type: "POST",
-        url: "/email",
-        success: function(response) {
-            console.log(response);
+import { get_id, headers} from "./ditko.js";
+
+const generator_btn = get_id("generator");
+
+generator_btn.addEventListener("click", function submit_form() {
+    fetch("/server", {
+        method: "post",
+        headers: headers
+    })
+    .then(
+    function(response) {
+        if (response.status != 200) {
+            cl("Error: " + response.status);
+            return;
         }
-    });
+        else {
+            alert("Refreshing feed.");
+        }
+    })
 });
