@@ -1,4 +1,4 @@
-import { get_id, headers, cl } from "./ditko.js";
+import { get_id, headers, cl } from "https://rawgit.com/stevedoesitall/ditkojs/master/ditko.js";
 
 const generator_btn = get_id("generator");
 
