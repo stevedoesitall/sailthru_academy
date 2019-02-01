@@ -94,7 +94,7 @@ const TOKEN_PATH = 'scripts/token.json';
     calendar.events.list({
       calendarId: 'primary',
       timeMin: (new Date()).toISOString(),
-      maxResults: 10,
+      maxResults: 50,
       singleEvents: true,
       orderBy: 'startTime',
     }, (err, res) => {
